@@ -1,15 +1,15 @@
 const set = document.getElementById('btn-set');
 const get = document.getElementById('btn-get');
-
+const otp = document.getElementById('otp');
 set.addEventListener('click', (e) => {
     e.preventDefault();
     const body = new FormData();
     body.append('company_id', '5f2b8c736047c32705e97d82');
     body.append('user_id', '5f5a1681b117ba0230ab7ba8');
-    body.append('otp', '2287');
-    fetch('https://unicorn-amazing-rhino.ngrok-free.app/api/v2/admin/login/validateOtp', {headers: {'Accept': 'application/json'}, body, method: 'POST'})
+    body.append('otp', otp.value);
+    fetch('https://unicorn-amazing-rhino.ngrok-free.app/api/v2/admin/login/validateOtp', {headers: {'Accept': 'application/json'}, body, method: 'POST', credentials: 'include'})
     .then((response) => {
-        console.log(response);
+        console.log(response.headers);
         return response.json()
         .then((responseData) => {
             console.log(responseData);
